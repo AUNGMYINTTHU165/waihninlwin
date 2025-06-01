@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: aqua;
+        }
+        .left{
+            background-color: bisque;
+            border: 2px solid black;
+            border-radius: 4px;
+            margin: 5px;
+            padding: 10px;
+
+        }
+        .id-card{
+  border: 3px solid #ddd;
+  width: fit-content;
+  background-color: white;
+}
+
+.id-header{
+  display: flex;
+  justify-content: center;
+  position: relative;
+  background-color: #02283D;
+  border-bottom-left-radius: 50%;
+  border-bottom-right-radius: 50%;
+}
+
+.id-header .id-logo{
+  position: absolute;
+  top: 1rem;
+  width: 120px;
+}
+
+.id-photo{
+  border-radius: 50%;
+  margin-top: 5rem;
+  margin-bottom: -4rem;
+  border: 10px solid #ddd;
+  width: 150px;
+}
+
+.id-details{
+  padding: 1rem;
+  margin-top: 3rem;
+}
+
+.id-details h1{
+  text-align: center;
+  font-size: 1.5rem; 
+  text-transform: uppercase;
+  margin-bottom: 0.3rem;
+}
+
+.id-details h3{
+  text-align: center;
+  color: #ff0000;
+  margin-top: 0;
+  font-size: 1rem;
+  text-transform: uppercase;
+}
+
+.id-details .m-info{
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.id-details .m-info-group{
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+}
+
+.id-details .m-info-group .info-value{
+  color: #8F6144;
+  font-weight: 500;
+}
+
+.id-details .m-info-group .info-value.email{
+  text-transform: lowercase;
+}
+
+
+.id-details .m-info-group h4{
+  margin-bottom: 0;
+  margin-top: 0.2rem
+}
+
+.id-details .m-qrcode{
+  display: flex;
+  justify-content: center;
+  align-items: center
+}
+
+.id-details .m-qrcode img{
+  width: 150px;
+}
+
+.id-footer{
+  background-color: #02283D;
+  color: #FFFFFF;
+  text-align: center;
+  padding: 0.3rem;
+}
+    </style>
+</head>
+<body >
+    <div>
+    <div class="left">
+        <div class="user Details">
+        <label for="nameInput">Name : </label><input  type="text" onchange="myFunction()" id="nameInput"><br><br>
+        <label for="companyInput">Company : </label><input type="text" onchange="myFunction()" id="companyInput"><br><br>
+        <label for="idNumber">ID Number : </label><input type="number" onchange="myFunction()" id="idNumber"><br><br>
+        <label for="phNumber">Phone : </label><input type="number" onchange="myFunction()" id="phNumber"><br><br>
+        <label for="emailInput">Email : </label><input type="email" onchange="myFunction()" id="emailInput"><br><br>
+        <label for="address">Address : </label><input type="text" onchange="myFunction()" id="address"><br><br>
+        <label for="webiteUrl">Own Website : </label><input type="url" onchange="myFunction()" id="websiteUrl"><br><br>
+        <label for="photo">Your Photo : </label><input type="file" accept="image/*" onchange="loadFile(event)" id="myphoto" ><br><br>
+        <button onclick="myFunction()"> Print Your ID Card</button>
+        <hr><hr>
+        </div>
+    </div>
+    <div class="right">
+    <div class="id-card">
+    <div class="id-header">
+     
+       <img class="id-photo" id="photo" src="aungmyothu.png" alt="photo" />
+    </div>
+    <div class="id-details">
+        
+      <h1 class="m-name" id="nameInput2">  </h1>
+      <h3 class="m-designation" id="companyInput2"></h3>
+      <div class="m-info">
+          <div>
+            <div class="m-info-group">
+              <h4 class="info-label" >ID Number: </h4>
+              <h4 class="info-value" id="idNumber2"></h4>
+            </div>
+            <div class="m-info-group">
+              <h4 class="info-label">Phone: </h4>
+              <h4 class="info-value"  id="phNumber2"></h4>
+            </div>
+            <div class="m-info-group">
+              <h4 class="info-label">Email: </h4>
+              <h4 class="info-value email" id="emailInput2"></h4>
+            </div>
+            <div class="m-info-group">
+              <h4 class="info-label">Address: </h4>
+              <h4 class="info-value" id="address2"></h4>
+            </div>
+          </div>
+          
+      </div>
+    </div>
+    <div class="id-footer">
+      <p id="websiteUrl2"></p>
+    </div>
+</div>
+</div>
+</div>
+<script>
+     var loadFile = function(event) {
+    var output = document.getElementById('photo');
+    output.src = URL.createObjectURL(event.target.files[0]);
+    output.onload = function() {
+      URL.revokeObjectURL(output.src) // free memory
+    }
+  };
+    function myFunction(){
+    let name = document.getElementById("nameInput").value;
+    let company = document.getElementById("companyInput").value;
+    let idNumber = document.getElementById("idNumber").value;
+    let phNumber = document.getElementById("phNumber").value;
+    let emailInput = document.getElementById("emailInput").value;
+    let address = document.getElementById("address").value;
+    let webiteUrl = document.getElementById("websiteUrl").value;
+    let profile = document.getElementById("photo").src;
+    let myphoto =(profile);
+    
+    document.getElementById("nameInput2").innerHTML= name;
+    document.getElementById("companyInput2").innerHTML=company;
+    document.getElementById("idNumber2").innerHTML=idNumber;
+    document.getElementById("phNumber2").innerHTML=phNumber;
+    document.getElementById("emailInput2").innerHTML=emailInput;
+    document.getElementById("address2").innerHTML=address;
+    document.getElementById("websiteUrl2").innerHTML= webiteUrl;
+    document.getElementById("photo").attributes= myphoto;
+}
+</script>
+</body >
+</html>
